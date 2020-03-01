@@ -10,7 +10,7 @@ function printNumbers(numbers) {
     console.log("And these are their sums")
     numbers.forEach(firstNumber => {
         numbers.forEach(secondNumber => {
-            console.log(firstNumber + secondNumber)
+            console.log(firstNumber + secondNumber);
         });    
     });
 }
