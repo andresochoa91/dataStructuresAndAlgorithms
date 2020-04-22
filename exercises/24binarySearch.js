@@ -1,24 +1,57 @@
+//  let numbers = [1, 3, 16, 22, 31, 33, 34, 40]
+//  let target = 1; 
+
+// //Recursive solution
+
+// function binarySearch (array, number, index = Math.floor(array.length / 2)) {
+//   let midPoint = Math.floor(array.length / 2);
+//   let pos = array.slice(midPoint + 1);
+//   let neg = array.slice(0, (midPoint));
+
+//   if (target === array[midPoint]) {
+//     return index;
+//   } else if (target > array[midPoint] && array[midPoint] !== 0) {
+//     index += Math.ceil(pos.length / 2)
+//     return binarySearch(pos, number, index);
+//   } else if (target < array[midPoint] && array[midPoint] !== 0) {
+//     index -= Math.ceil(neg.length / 2);
+//     return binarySearch(neg, number, index);
+//   } else {
+//     return null;
+//   }
+// }
+
+// let act = binarySearch(numbers, target);
+// let exp = 0;
+// let test1 = "Position of 1 is 0";
+
+
+//Iterative solution
+
 let numbers = [1, 3, 16, 22, 31, 33, 34, 40]
 let target = 1; 
 
-function lookFor (array, number, index = Math.floor(array.length / 2)) {
-  let midInd = Math.floor(array.length / 2);
-  
-  if (target === array[midInd]) {
-    return index;
-  } else if (target > array[midInd] && array[midInd] !== 0) {
-    index += Math.ceil(array.slice((midInd + 1)).length / 2)
-    return lookFor(array.slice((midInd + 1)), number, index);
-  } else if (target < array[midInd] && array[midInd] !== 0) {
-    index -= Math.ceil(array.slice(0, (midInd)).length / 2);
-    console.log(index);
-    return lookFor(array.slice(0, (midInd)), number, index);
-  } else {
-    return null;
+function binarySearch (array, number) {
+  let min = 0;
+  let max = array.length - 1;
+  let midPoint = Math.floor((min, max) / 2);
+
+  while (min <= max) {
+    if (target === array[midPoint]) {
+      return midPoint
+    } 
+    if (target < array[midPoint]) {
+      max = midPoint - 1;
+    }
+    if (target > array[midPoint]) {
+      min = midPoint + 1;
+    }
+    midPoint = Math.floor((max + min) / 2);
   }
 }
+binarySearch(numbers, target);
 
-let act = lookFor(numbers, target);
+let act = binarySearch(numbers, target);
 let exp = 0;
 let test1 = "Position of 1 is 0";
 
