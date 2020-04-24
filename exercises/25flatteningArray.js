@@ -12,3 +12,4 @@ function flattenArray (array, newArr = []) {
 }
 
 console.log(flattenArray(arr));
+
