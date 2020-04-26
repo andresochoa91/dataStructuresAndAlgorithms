@@ -10,6 +10,4 @@ function flattenArray (array, newArr = []) {
   }
   return newArr;
 }
-
 console.log(flattenArray(arr));
-
