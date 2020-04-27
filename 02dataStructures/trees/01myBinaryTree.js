@@ -30,7 +30,10 @@ tree.insert(6);
 tree.insert(20);
 tree.insert(15);
 tree.insert(1);
-console.log(tree);
+tree.insert(15);
+tree.insert(170);
+
+console.log(JSON.stringify(tree));
 //         9
 //     4       20
 //   1   6   15  170
@@ -39,19 +42,12 @@ console.log(tree);
 function recursive (node, value) {
   if (value === node.value) {
     return "value already exists";
-  } else if (value > node.value) {
-    if (node.right === null) {
-      node.right = new Node(value);
-      return node.right;
-    } else {
-      return recursive(node.right, value);
-    }   
-  } else if (value < node.value) {
-    if (node.left === null) {
-      node.left = new Node(value);
-      return node.left;
-    } else {
-      return recursive(node.left, value);
-    }   
   }
+  let direction = (value > node.value) ? "right" : "left";
+  if (node[direction] === null) {
+    node[direction] = new Node(value);
+    return node[direction];
+  } else {
+    return recursive(node[direction], value);
+  }      
 }
