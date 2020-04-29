@@ -89,6 +89,70 @@ class BinarySearchTree {
       }
     }
   }
+
+  findSmallest (node) {
+    let currentNode = node.right;
+    let temp = currentNode.left;
+    while (temp) {
+      if (temp.left) {
+        currentNode = temp;
+        temp = temp.left;
+      } else {
+        temp = null;
+      }
+    }
+    return currentNode;
+  }
+  
+  remove (value) {
+    let currentNode = this.root;
+    if (!currentNode) {
+      return null;
+    }
+
+    if (this.root.value === value) {
+      if (!this.root.left && !this.root.right) {
+        this.root = null;
+        return this;  
+      } else if (!this.root.left) {
+        this.root = this.root.right;
+        return this;
+      } else if (!this.root.right) {
+        this.root = this.root.left;
+        return this;
+      } else {
+        let node = this.findSmallest(this.root);
+        this.root.value = node.left.value;
+        node.left = node.left.right;
+        return this;
+      } 
+    }
+
+    while (true) {
+      let direction = value < currentNode.value ? "left" : "right";
+      if (currentNode[direction].value === value) {
+        let temp = currentNode[direction];
+        if (!temp.left && !temp.right) {
+          currentNode.value = temp.value;
+          currentNode[direction] = null;
+          return this;
+        } else if (temp.left && !temp.right) {
+          currentNode.right = temp.left;
+          return this;
+        } else if (!temp.left && temp.right) {
+          currentNode.left = temp.right;
+          return this;
+        } else {
+          let node = this.findSmallest(temp);
+          currentNode[direction].value = node.left.value;
+          node.left = node.left.right;
+          return this;
+        }
+      } else {
+        currentNode = currentNode[direction];
+      }
+    }
+  }
 }
 
 const tree = new BinarySearchTree();
@@ -102,9 +166,11 @@ tree.insert(15);
 tree.insert(170);
 tree.insert(18);
 tree.insert(100);
-console.log(JSON.stringify(tree.lookup(9)))
+console.log(JSON.stringify(tree));
+tree.remove(6);
 console.log(JSON.stringify(tree));
 //            9
-//     4          20
+//     4             20
 // 1      6    15         170
-//                18   100
+//                18    100
+
