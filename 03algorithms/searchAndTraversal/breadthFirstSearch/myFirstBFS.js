@@ -159,6 +159,7 @@ class BinarySearchTree {
     }
   }
 
+  //Iterative solution
   breadthFirstSearch () {
     let currentNode = this.root;
     let list = [];
@@ -177,6 +178,24 @@ class BinarySearchTree {
     }
     return list;
   }
+
+  // //Recursive solution
+  // breadthFirstSearch = () => {
+  //   return (function bfs (currentNode, list, queue) {
+  //     if (queue.length === 0) {
+  //       return list;    
+  //     }
+  //     currentNode = queue.shift();
+  //     list.push(currentNode.value);
+  //     if (currentNode.left) {
+  //       queue.push(currentNode.left);
+  //     }
+  //     if (currentNode.right) {
+  //       queue.push(currentNode.right);
+  //     }
+  //     return bfs(currentNode, list, queue);
+  //   })(this.root, [], [this.root]);
+  // }
 }
 
 const tree = new BinarySearchTree();
@@ -193,12 +212,12 @@ tree.insert(100);
 tree.remove(6);
 console.log(JSON.stringify(tree));
 console.log(tree.breadthFirstSearch());
-//           9
-//        /     \
-//       /       \
-//     4          20
-//   /   \      /    \
-// 1      6   15     170
-//             \     /
-//             18  100
+//             9
+//           /   \
+//         /      \
+//       4         20
+//     /   \     /    \
+//   1      6  15     170
+//              \     /
+//              18  100
 
