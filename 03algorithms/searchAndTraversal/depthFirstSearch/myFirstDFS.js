@@ -162,7 +162,7 @@ class BinarySearchTree {
   inOrderDFS () {
     let currentNode = this.root;
     let arr = [];
-    function traverse (node) {
+    (function traverse (node) {
       if (node.left) {
         traverse(node.left)
       }
@@ -172,15 +172,14 @@ class BinarySearchTree {
       if (node.right) {
         traverse(node.right);
       }      
-    }
-    traverse(currentNode);
+    })(currentNode);
     return arr;
   } 
 
   preorderDFS () {
     let currentNode = this.root;
     let arr = [];
-    function traverse (node) {
+    (function traverse (node) {
       arr.push(node.value);
 
       if (node.left) {
@@ -190,16 +189,14 @@ class BinarySearchTree {
       if (node.right) {
         traverse(node.right);
       }      
-    }
-
-    traverse(currentNode);
+    })(currentNode);
     return arr;
   } 
 
   postorderDFS () {
     let currentNode = this.root;
     let arr = [];
-    function traverse (node) {
+    (function traverse (node) {
       if (node.left) {
         traverse(node.left)
       }
@@ -209,9 +206,7 @@ class BinarySearchTree {
       }      
       
       arr.push(node.value);
-    }
-
-    traverse(currentNode);
+    })(currentNode);
     return arr;
   } 
 }
