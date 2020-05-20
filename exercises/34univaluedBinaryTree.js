@@ -14,19 +14,18 @@
  * @return {boolean}
 */
 
-var isUnivalTree = function(root) {
-  return preOrder(root, root.val);
+var isUnivalTree = function(root, v = root.val) {
+  if (root === null) {
+      return true;
+  }
+    
+  if (root.val === v) {
+      return isUnivalTree(root.left, v) && isUnivalTree(root.right, v);
+  } else {
+      return false;
+  }
+  return isUnivalTree(root, root.val);
 };
-
-function preOrder(node, prevVal) {
-  if (node === null) {
-    return true;
-  }  
-  if (node.val !== prevVal) {
-    return false;
-  } 
-  return preOrder(node.left, node.val) && preOrder(node.right, node.val);
-}
 
 //    1
 //   / \
