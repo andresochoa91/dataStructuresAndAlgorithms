@@ -24,14 +24,23 @@
 // console.log(minMoves([1,2,3,4]));
 
 
-//Efficient solution
+// //Efficient solution
+// var minMoves = function(nums) {
+//   var sum = nums[0];
+//   var min = nums[0];
+//   for(var i = 1; i < nums.length; i++){
+//       min = Math.min(min, nums[i]);
+//       sum += nums[i];
+//   }
+//   return sum - (min * (nums.length));
+// };
+// console.log(minMoves([5, 10, 6, 6, 6]));
+
+
+//Even better solution
+
 var minMoves = function(nums) {
-  var sum = nums[0];
-  var min = nums[0];
-  for(var i = 1; i < nums.length; i++){
-      min = Math.min(min, nums[i]);
-      sum += nums[i];
-  }
-  return sum - (min * (nums.length));
-};
+  let min = Math.min(...nums);
+  return nums.reduce((count, num) => count + (num - min), 0);
+}    
 console.log(minMoves([5, 10, 6, 6, 6]));
