@@ -3,15 +3,16 @@ var getIntersectionNode = function(headA, headB) {
 
     const traverse = (node, h) => {
         if (!node) {
-            cache.add(node);
-            return null;
+            if (h === h1) {
+                cache.add(node);
+            } else {
+                return null;
+            }
         } else {
             if (h === "h1") {
                 cache.add(node);
-            } else {
-                if (cache.has(node)) {
-                    return(node);
-                }
+            } else if (cache.has(node)) {
+                return(node);    
             }
             return traverse(node.next, h);
         }
