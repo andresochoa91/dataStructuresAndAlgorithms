@@ -29,7 +29,54 @@
 // console.log(longestPalindrome(word));
 
 
-//More efficient
+//More efficient (Iterative)
+var longestPalindrome = function(s) {
+  if (s.length === 1) return s;
+
+  let lp = s[0];
+  let p1 = 0;
+  let p2 = 1;
+
+  // const memo = new Set;  
+    
+  const isPalindrome = (word) => {
+    // if (memo.has(word)) return true;
+    for (let i = 0; i < word.length / 2; i++) {
+      if (!(word[i] === word[word.length - 1 - i])) return false
+    }
+    // memo.add(word);  
+    return true;
+  };
+
+  const getPalindrome = (left, right) => {
+    while ((s[left] === s[right]) && s[left] && s[right]) {
+      left--;
+      right++;
+    }
+    
+    p1 = left + 1;
+    p2 = right - 1;
+
+    if ((s.slice(p1, p2 + 1)).length > lp.length) {
+      lp = s.slice(p1, p2 + 1);
+    }
+  };
+
+  while (s[p2]) {
+    if (isPalindrome(s.slice(p1, p2 + 1))) {
+      getPalindrome(p1, p2);
+    } 
+    if (isPalindrome(s.slice(p1 - 1, p2 + 1))) {
+      getPalindrome(p1 - 1, p2, s.slice(p1 - 1, p2));
+    }
+    p1++;
+    p2++;        
+  };
+  return lp;
+};
+
+
+//More efficient (Recursive)
 var longestPalindrome = function(s) {
   
   if (s.length < 2) {
