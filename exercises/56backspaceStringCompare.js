@@ -57,6 +57,7 @@ var backspaceCompare = function(S, T) {
     let pS = S.length - 1;
     let pT = T.length - 1;
     while (pS >= 0 || pT >= 0) {
+        
         const getNextChar = (word, pointer) => {
             let count = 0;
             while (word[pointer] === "#" || count !== 0) {
