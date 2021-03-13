@@ -16,22 +16,22 @@
 // 1 <-> 2 <-> 7 <-> 8 <-> 11 <-> 12 <-> 9 <-> 10 <-> 4 <-> 15 <-> 16
 
 
-// // Time: O(n), space: 0(n) 
+// Time: O(n), space: 0(n) 
 // var flatten = function(head) {
 //   let stack = [];
 //   let headCopy = head;
 //   while (headCopy) {
-//       if (headCopy.child) {
-//           if (headCopy.next) stack.push(headCopy.next);
-//           headCopy.next = headCopy.child;
-//           headCopy.child = null;
-//           headCopy.next.prev = headCopy;
-//       }
-//       if (!headCopy.next && stack.length) {
-//           headCopy.next = stack.pop();
-//           if (headCopy.next) headCopy.next.prev = headCopy;
-//       }
-//       headCopy = headCopy.next;
+//     if (headCopy.child) {
+//       if (headCopy.next) stack.push(headCopy.next);
+//       headCopy.next = headCopy.child;
+//       headCopy.child = null;
+//       headCopy.next.prev = headCopy;
+//     }
+//     if (!headCopy.next && stack.length) {
+//       headCopy.next = stack.pop();
+//       if (headCopy.next) headCopy.next.prev = headCopy;
+//     }
+//     headCopy = headCopy.next;
 //   }
 //   return head;
 // };
@@ -42,22 +42,22 @@ var flatten = function(head) {
   let headCopy = head;
   let tail = null;
   while (headCopy) {
-      if (headCopy.child) {
-          tail = headCopy.next;
-          headCopy.next = headCopy.child;
-          headCopy.next.prev = headCopy;
-          headCopy.child = null;
-          let headCopy2 = headCopy;
-          
-          while (headCopy2.next) {
-              headCopy2 = headCopy2.next;       
-          }
-          
-          headCopy2.next = tail;
-          if (headCopy2.next) headCopy2.next.prev = headCopy2;
-          tail = null;
+    if (headCopy.child) {
+      tail = headCopy.next;
+      headCopy.next = headCopy.child;
+      headCopy.next.prev = headCopy;
+      headCopy.child = null;
+      let headCopy2 = headCopy;
+      
+      while (headCopy2.next) {
+        headCopy2 = headCopy2.next;       
       }
-      headCopy = headCopy.next;
+      
+      headCopy2.next = tail;
+      if (headCopy2.next) headCopy2.next.prev = headCopy2;
+      tail = null;
+    }
+    headCopy = headCopy.next;
   }
   return head;
 };
