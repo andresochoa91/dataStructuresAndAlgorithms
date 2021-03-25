@@ -31,6 +31,6 @@ var findDisappearedNumbers = function(nums) {
   return nums.reduce((acc, num, i) => {
     if (num) acc.push(i + 1);
     return acc;
-  }, [])
+  }, []);
 }
 findDisappearedNumbers([4,3,2,7,8,2,3,1]);
