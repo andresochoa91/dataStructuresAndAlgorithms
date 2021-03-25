@@ -57,17 +57,40 @@ console.log(head5);
 
 
 // //Most efficient solution without creating new Linked List, but it mutates the linked list into a NOT desired result >:(
-var reverseList = function (head) {
-  let prev = null;
-  // let current = head;
+// var reverseList = function (head) {
+//   let prev = null;
+//   // let current = head;
 
-  while (head) {
-    let next = head.next;
-    head.next = prev;
-    prev = head;
-    head = next;
+//   while (head) {
+//     let next = head.next;
+//     head.next = prev;
+//     prev = head;
+//     head = next;
+//   }
+//   return prev;
+// }
+
+
+// //Mutating original using stack
+var reverseList = function (head) {
+  if (!head) return null;
+  let stack = [];
+  let newHead = head;
+
+  while (newHead) {
+    stack.push(newHead.val);
+    newHead = newHead.next;
   }
-  return prev;
+
+  newHead = head;
+    
+  while (newHead) {
+    newHead.val = stack.pop();
+    newHead = newHead.next;
+  }
+
+  return head;
 }
+
 
 console.log(reverseList(head5));
