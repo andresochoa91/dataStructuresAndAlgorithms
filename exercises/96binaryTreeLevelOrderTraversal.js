@@ -16,9 +16,11 @@
 // Output: []
 
 
+// //DFS
+
 var levelOrder = function(root) {
-  if (!root) return [];
   const collection = [];
+  if (!root) return collection;
   const DFS = (r, level) => {        
     if (!collection[level]) collection[level] = [];
     collection[level].push(r.val);
@@ -29,3 +31,25 @@ var levelOrder = function(root) {
   DFS(root, 0);  
   return collection;   
 };
+
+// //BFS
+
+// var levelOrder = function(root) {
+//   const collection = [];
+//   if (!root) return collection;
+//   const queue = [root];
+//   let count = 0;
+//   while (queue.length) {
+//     count = queue.length;
+//     let arr = [];
+//     while (count) {
+//       let r = queue.shift();
+//       arr.push(r.val);
+//       count--;
+//       if (r.left) queue.push(r.left);
+//       if (r.right) queue.push(r.right);                        
+//     }
+//     collection.push(arr);
+//   }
+//   return collection;   
+// };
