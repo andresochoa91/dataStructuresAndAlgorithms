@@ -1,38 +1,50 @@
-//Input: [0,1,0,3,12]
-//Output: [1,3,12,0,0]
+// Given an integer array nums, move all 0's to the end of it while maintaining the relative order of the non-zero elements.
+
+// Note that you must do this in-place without making a copy of the array.
 
 
-//const moveZeroes = (array) => {
-//    let zeroes = 0;
-//    let arr = [];
-//    for (let i = 0; i < array.length; i++) {
-//        if (array[i] !== 0) {
-//            arr.push(array[i]);
-//        } else {
-//            zeroes++;
-//        }
-//    }
-//    for (i = 0; i < zeroes; i++) {
-//        arr.push(0);
-//    }
-//    console.log(arr);
-//}
-//moveZeroes([0,1,0,3,12]);
+// Example 1:
+// Input: nums = [0,1,0,3,12]
+// Output: [1,3,12,0,0]
+
+// Example 2:
+// Input: nums = [0]
+// Output: [0]
 
 
-const moveZeroes = (array) => {
-    let zeroes = (array.length - 1);
-    let num = 0;
-    let arr = [];
-    for (let i = 0; i < array.length; i++) {
-        if (array[i] !== 0) {
-            arr[num] = (array[i]);
-            num++;
-        } else {
-            arr[zeroes] = 0;
-            zeroes--;
+// //O(n), O(n)
+// var moveZeroes = function(nums) {
+//     const values = [];
+//     nums.forEach((num) => {
+//         if (num) {
+//             values.push(num);            
+//         } 
+//     });
+
+//     nums.forEach((num, i) => {
+//         if (values[i]) {
+//             nums[i] = values[i];
+//         } else {
+//             nums[i] = 0;
+//         }     
+//     });
+    
+//     return nums;
+// };
+
+
+// //O(n) O(1)
+var moveZeroes = function(nums) {
+    let firstZero = -1;
+    
+    for (let i = 0; i < nums.length; i++) {
+        if (!nums[i]) {
+            if (firstZero === -1) firstZero = i;
+        } else if (firstZero !== -1) {
+            nums[firstZero] = nums[i];
+            nums[i] = 0;
+            firstZero++;
         }
-    }
-    console.log(arr)
-}
-moveZeroes([0,1,0,3,12]);
+    }     
+    return nums;
+};
