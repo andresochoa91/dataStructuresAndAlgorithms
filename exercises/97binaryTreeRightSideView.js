@@ -21,9 +21,9 @@ var rightSideView = function(root) {
   const values = [];
   if (!root) return values;
   const DFS = (root, level) => {
-    values[level] = root.val;            
-    if (root.left) DFS(root.left, level + 1); 
-    if (root.right) DFS(root.right, level + 1); 
+      if (values[level] === undefined) values[level] = root.val;            
+      if (root.right) DFS(root.right, level + 1); 
+      if (root.left) DFS(root.left, level + 1); 
   }
   DFS(root, 0);
   return values;
