@@ -36,13 +36,12 @@
 // //O(n) O(1)
 var moveZeroes = function(nums) {
     let firstZero = -1;
-    
+        
     for (let i = 0; i < nums.length; i++) {
         if (!nums[i]) {
             if (firstZero === -1) firstZero = i;
         } else if (firstZero !== -1) {
-            nums[firstZero] = nums[i];
-            nums[i] = 0;
+            [nums[firstZero], nums[i]] = [nums[i], nums[firstZero]];
             firstZero++;
         }
     }     
