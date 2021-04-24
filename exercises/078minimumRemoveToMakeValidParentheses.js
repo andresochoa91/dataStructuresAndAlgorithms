@@ -15,23 +15,22 @@
 
 
 var minRemoveToMakeValid = function(s) {
-  let stack = [];
-  s = s.split("");
-  
-  for (let i = 0; i < s.length; i++) {
-      if (s[i] === "(") {
-          stack.push(i);
-          s[i] = "";
-      } else if (s[i] === ")") {
-          if (stack.length) {
-              s[stack.pop()] = "(";
-              s[i] = ")";
-          } else {
-              s[i] = "";
-          }
-      } 
-  }
-  return s.join("");
+	let stack = [];
+	s = s.split("");
+	
+	for (let i = 0; i < s.length; i++) {
+		if (s[i] === "(") {
+			stack.push(i);
+			s[i] = "";
+		} else if (s[i] === ")") {
+			if (stack.length) {
+				s[stack.pop()] = "(";
+			} else {
+				s[i] = "";
+			}
+		} 
+	}
+	return s.join("");
 };
 
 console.log(minRemoveToMakeValid("lee(t(c)o)de)"));
